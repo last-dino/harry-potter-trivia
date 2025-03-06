@@ -1,0 +1,123 @@
+/* Main Container */
+.flashcard-app {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Harrington', serif;
+}
+
+/* Card Container */
+.flashcard-container {
+  width: 100%;
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.75);
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  cursor: url('/cur.png'), pointer;
+}
+
+/* Titles and descriptions */
+.app-title {
+  font-family: 'Harry Potter', sans-serif;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #ffd900cc; 
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.app-description {
+  color: #e0e0e0;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.card-count {
+  color: #c9c9c9;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+}
+
+/* Flashcard */
+.flashcard {
+  position: relative;
+  width: 100%;
+  height: 16rem;
+  cursor: pointer;
+  margin-bottom: 2rem;
+  perspective: 1000px;
+  transition: transform 0.3s ease;
+}
+
+.flashcard:hover {
+  transform: scale(1.02);
+  cursor: url('/cur.png'), pointer;
+}
+
+.card-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+  background-image: url('/img/houses.png'); 
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-content {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-question, 
+.card-answer {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+  margin: 0;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Button */
+.button-container {
+  display: flex;
+  justify-content: center;
+  cursor: url('/cur.png'), auto;
+}
+
+.next-button {
+  padding: 0.75rem 1.5rem;
+  background-color: #ffd900cc; 
+  color: #000;
+  font-weight: bold;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+  cursor: url('/cur.png'), auto;
+}
+
+.next-button:hover {
+  background-color: #3a466e;
+  box-shadow: 0 2px 4px rgba(61, 112, 57, 0.537);
+  cursor: url('/cur.png'), pointer;
+}

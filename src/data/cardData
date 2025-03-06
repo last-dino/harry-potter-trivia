@@ -1,0 +1,64 @@
+const cardData = [
+    {
+      question: "What is Harry Potter's Patronus?",
+      answer: "A stag",
+      answerImage: "/img/stag.jpg",
+      category: "easy"
+    },
+    {
+      question: "What's the name of the creature that can only be seen by those who have witnessed death?",
+      answer: "Thestrals",
+      answerImage: "/img/thestrals.png",
+      category: "hard"
+    },
+    {
+      question: "What house does the Sorting Hat almost put Harry in?",
+      answer: "Slytherin",
+      answerImage: "/img/sly.png",
+      category: "medium"
+    },
+    {
+      question: "What is the name of the Weasley family house?",
+      answer: "The Burrow",
+      answerImage: "/img/burrow.jpg",
+      category: "medium"
+    },
+    {
+      question: "What is the name of Hagrid’s three-headed dog?",
+      answer: "Fluffy",
+      answerImage: "/img/fluffy.jpg",
+      category: "medium"
+    },
+    {
+      question: "What are the three Unforgivable Curses?",
+      answer: "Avada Kedavra, Crucio, and Imperio",
+      answerImage: "/img/curse.jpg",
+      category: "hard"
+    },
+    {
+      question: "What position does Harry play in Quidditch?",
+      answer: "Seeker",
+      answerImage: "/img/snitch.jpeg",
+      category: "easy"
+    },
+    {
+      question: "What is the name of Hermione's cat?",
+      answer: "Crookshanks",
+      answerImage: "/img/crookshank.gif",
+      category: "medium"
+    },
+    {
+      question: "Who is the Half-Blood Prince?",
+      answer: "Severus Snape",
+      answerImage: "/img/snape.jpg",
+      category: "hard"
+    },
+    {
+      question: "What is the name of Lord Voldemort's snake?",
+      answer: "Nagini",
+      answerImage: "/img/nigini.jpg",
+      category: "medium"
+    }
+];
+
+export default cardData;
