@@ -5,16 +5,24 @@
   justify-content: center;
   align-items: center;
   font-family: 'Harrington', serif;
+  background-image: url('/img/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 /* Card Container */
 .flashcard-container {
   width: 100%;
+  max-width: 600px;
   padding: 2rem;
   background-color: rgba(0, 0, 0, 0.75);
   border-radius: 0.5rem;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
   cursor: url('/cur.png'), pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Titles and descriptions */
@@ -25,18 +33,77 @@
   color: #ffd900cc; 
   margin-bottom: 0.5rem;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  text-align: center;
 }
 
 .app-description {
   color: #e0e0e0;
   margin-bottom: 1.5rem;
   font-size: 1.1rem;
+  text-align: center;
 }
 
 .card-count {
   color: #c9c9c9;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   font-size: 0.9rem;
+}
+
+/* Stats Container */
+.stats-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  color: #e0e0e0;
+  font-size: 0.9rem;
+}
+
+.card-stats, .streak-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* View Toggle */
+.view-toggle {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.toggle-button {
+  padding: 0.75rem 1.25rem;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #e0e0e0;
+  border: 1px solid #ffd900cc;
+  cursor: url('/cur.png'), pointer;
+  font-family: 'Harrington', serif;
+  transition: all 0.3s ease;
+}
+
+.toggle-button:first-child {
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+
+.toggle-button:last-child {
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.toggle-button.active {
+  background-color: #ffd900cc;
+  color: #000;
+  font-weight: bold;
+}
+
+.toggle-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.toggle-button:hover:not(:disabled):not(.active) {
+  background-color: rgba(255, 217, 0, 0.2);
 }
 
 /* Flashcard */
@@ -44,15 +111,26 @@
   position: relative;
   width: 100%;
   height: 16rem;
-  cursor: pointer;
+  cursor: url('/cur.png'), pointer;
   margin-bottom: 2rem;
   perspective: 1000px;
   transition: transform 0.3s ease;
+  border-radius: 0.75rem;
+  overflow: hidden;
 }
 
 .flashcard:hover {
   transform: scale(1.02);
-  cursor: url('/cur.png'), pointer;
+}
+
+.correct-answer {
+  box-shadow: 0 0 15px 5px rgba(76, 175, 80, 0.8);
+  border: 2px solid rgba(76, 175, 80, 1);
+}
+
+.wrong-answer {
+  box-shadow: 0 0 15px 5px rgba(244, 67, 54, 0.8);
+  border: 2px solid rgba(244, 67, 54, 1);
 }
 
 .card-face {
@@ -74,9 +152,10 @@
   background-color: rgba(0, 0, 0, 0.7);
   padding: 1rem;
   border-radius: 0.5rem;
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: 90%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -88,6 +167,7 @@
   text-align: center;
   color: white;
   margin: 0;
+  width: 100%;
 }
 
 .hidden {
@@ -95,29 +175,174 @@
   pointer-events: none;
 }
 
-/* Button */
+/* Answer Input */
+.answer-input-container {
+  width: 100%;
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.answer-input {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid #ffd900cc;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  border-radius: 5px 0 0 5px;
+  font-size: 16px;
+  font-family: 'Harrington', serif;
+  cursor: url('/cur.png'), text;
+}
+
+.answer-input:focus {
+  outline: none;
+  border-color: #ffd900;
+  cursor: url('/cur.png'), text;
+}
+
+.submit-button {
+  padding: 10px 15px;
+  background-color: #ffd900cc;
+  color: #000;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  cursor: url('/cur.png'), pointer;
+  font-weight: bold;
+  font-family: 'Harrington', serif;
+}
+
+.submit-button:disabled {
+  background-color: #a99bc1;
+  cursor: not-allowed;
+}
+
+.submit-button:hover:not(:disabled) {
+  background-color: #ffd900;
+}
+
+/* Button Container */
 .button-container {
   display: flex;
-  justify-content: center;
-  cursor: url('/cur.png'), auto;
+  justify-content: space-between;
+  width: 100%;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
 }
 
-.next-button {
-  padding: 0.75rem 1.5rem;
-  background-color: #ffd900cc; 
+.nav-button {
+  padding: 0.75rem 1rem;
+  background-color: #ffd900cc;
   color: #000;
-  font-weight: bold;
   border: none;
   border-radius: 0.5rem;
-  font-size: 1rem;
-  cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  cursor: url('/cur.png'), pointer;
+  font-weight: bold;
   transition: background-color 0.3s ease;
-  cursor: url('/cur.png'), auto;
+  font-family: 'Harrington', serif;
+  flex: 1;
 }
 
-.next-button:hover {
+.prev-button, .next-button {
+  max-width: 100px;
+}
+
+.shuffle-button, .mastered-button {
+  max-width: 140px;
+}
+
+.nav-button:hover:not(:disabled) {
   background-color: #3a466e;
+  color: white;
   box-shadow: 0 2px 4px rgba(61, 112, 57, 0.537);
+}
+
+.nav-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.feedback-text {
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: 18px;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  text-align: center;
+}
+
+/* Category styles */
+.easy-card {
+  background-color: rgba(76, 175, 80, 0.8);
+}
+
+.medium-card {
+  background-color: rgba(255, 152, 0, 0.8);
+}
+
+.hard-card {
+  background-color: rgba(244, 67, 54, 0.8);
+}
+
+/* Restore button */
+.restore-button {
+  padding: 0.75rem 1.5rem;
+  background-color: #3a466e;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
   cursor: url('/cur.png'), pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  font-family: 'Harrington', serif;
+  margin-top: 0.5rem;
+}
+
+.restore-button:hover {
+  background-color: #ffd900cc;
+  color: #000;
+}
+
+/* Empty State */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  color: #e0e0e0;
+  font-size: 1.2rem;
+}
+
+.empty-state p {
+  margin-bottom: 1.5rem;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+  .flashcard-container {
+    padding: 1.5rem;
+  }
+  
+  .app-title {
+    font-size: 2rem;
+  }
+  
+  .button-container {
+    flex-wrap: wrap;
+  }
+  
+  .nav-button {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+  }
+  
+  .card-question,
+  .card-answer {
+    font-size: 1.3rem;
+  }
+  
+  .flashcard {
+    height: 14rem;
+  }
 }
